@@ -86,7 +86,10 @@ h2 {
 .hex-lock-container {
     height: 125px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     background: #333;
+    justify-content: center;
 }
 
 .hex-container {
@@ -102,9 +105,14 @@ h2 {
     padding-top: 15px;
 }
 
-.palette {
+.color-container {
+    width: calc(20% - 2px);
+}
+
+.color {
+	border: 1px solid #555;
 	height: 250px;
-	width: 20%;
+	width: 100%;
 }
 
 .palette.one {
@@ -128,11 +136,16 @@ h2 {
 }
 
 .hex span {
-	background: #222;
-    display: inline-block;
-    height: 25px;
-    width: 75px;
+    background: #222;
+    height: 30px;
+    color: #888;
+    font-size: 0.85rem;
+    width: 80px;
+    display: flex;
     margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.5px;
 }
 
 .hex p {
@@ -140,7 +153,6 @@ h2 {
 }
 
 .hex {
-    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -149,7 +161,8 @@ h2 {
 
 i {
 	font-size: 22px;
-    color: #777;
+	color: #777;
+	height: auto;
 }
 
 .generate-btn {
