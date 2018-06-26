@@ -7,8 +7,51 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<h1>Palette Picker</h1>
+	</header>
+	<section class="add-project">
+			<select>
+					<option value="" disabled selected>Select a project</option>
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</select>
+				<input placeholder="Enter a name for your palette" />
+				<button>Save</button>
+	</section>
+	<main>
+		<h2>unnamed</h2>
+		<section class="palette-container">
+				<article class="palette one"></article>
+				<article class="palette two"></article>
+				<article class="palette three"></article>
+				<article class="palette four"></article>
+				<article class="palette five"></article>
+		</section>
+		<section class="hex-lock-container">
+			<section class="lock-container">
+				<article class="lock one"><i class="fas fa-unlock-alt"></i></article>
+				<article class="lock two"><i class="fas fa-unlock-alt"></i></article>
+				<article class="lock three"><i class="fas fa-unlock-alt"></i></article>
+				<article class="lock four"><i class="fas fa-unlock-alt"></i></article>
+				<article class="lock five"><i class="fas fa-unlock-alt"></i></article>
+			</section>
+			<section class="hex-container">
+				<article class="hex one"><p>HEX</p><span></span></article>
+				<article class="hex two"><p>HEX</p><span></span></article>
+				<article class="hex three"><p>HEX</p><span></span></article>
+				<article class="hex four"><p>HEX</p><span></span></article>
+				<article class="hex five"><p>HEX</p><span></span></article>
+			</section>
+		</section>
+		<button class="generate-btn">Generate new palette</button>
+</main>
 <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,161 @@
+* {
+	font-family: "Source Sans Pro";
+}
+
+html {
+	background: #222;
+}
+
+main {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+header {
+	background: #272727; /* Old browsers */
+	background: -moz-linear-gradient(top, #272727 0%, #1a1a1a 99%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #272727 0%,#1a1a1a 99%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #272727 0%,#1a1a1a 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#272727', endColorstr='#1a1a1a',GradientType=0 ); /* IE6-9 */
+	padding: 15px;
+}
+
+.add-project {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+h1 {
+	font-weight: 300;
+	color: #eee;
+	margin: 0;
+	font-size: 1.8rem;
+}
+
+h2 {
+	text-align: left;
+	color: #eee;
+	font-weight: 300;
+	font-size: 1.3rem;
+	margin-top: 40px;
+}
+
+.add-project select {
+	background: none;
+    border: none;
+    color: #777;
+    padding: 5px;
+    height: 35px;
+    width: 16%;
+}
+
+.add-project input {
+	margin: 0 40px;
+	border: none;
+	font-size: 0.9rem;
+    background: #333;
+    width: 20%;
+    padding: 0 40px;
+    border-radius: 5px;
+}
+
+.add-project button {
+    padding: 0 20px;
+    background: #222;
+    border-radius: 5px;
+    color: #eee;
+    border: 1px solid #333;
+}
+
+.add-project button:hover {
+	cursor: pointer;
+	background: #191919;
+}
+
+.palette-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 30px;
+	justify-content: space-between;
+}
+
+.hex-lock-container {
+    height: 125px;
+    margin-top: 10px;
+    background: #333;
+}
+
+.hex-container {
+	display: flex;
+    flex-wrap: wrap;
+    color: #888;
+    justify-content: space-evenly;
+}
+
+.lock-container {
+	display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+}
+
+.palette {
+	height: 250px;
+	width: 20%;
+}
+
+.palette.one {
+	background: red;
+}
+
+.palette.two {
+	background: green;
+}
+
+.palette.three {
+	background: blue;
+}
+
+.palette.four {
+	background: pink;
+}
+
+.palette.five {
+	background: rgb(0, 225, 255);
+}
+
+.hex span {
+	background: #222;
+    display: inline-block;
+    height: 25px;
+    width: 75px;
+    margin: 0 auto;
+}
+
+.hex p {
+	margin-bottom: 10px;
+}
+
+.hex {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+i {
+	font-size: 22px;
+    color: #777;
+}
+
+.generate-btn {
+	padding: 15px 20px;
+    background: linear-gradient(to bottom, #272727 0%,#1a1a1a 99%);
+    border: 1px solid #444;
+    margin-top: 30px;
+    color: #ccc;
+}
