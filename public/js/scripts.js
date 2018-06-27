@@ -10,6 +10,8 @@ const changeColors = () => {
     }
 }
 
+changeColors();
+
 const generateBtn = document.querySelector('.generate-btn');
 generateBtn.addEventListener('click', changeColors);
 
@@ -20,7 +22,7 @@ const lockColor = (e) => {
 
     color.classList.toggle('locked');
     if (lock.classList.contains('fa-lock')) {
-        lock.classList = 'fas fa-unlock-alt lock';
+        lock.classList = 'fas fa-lock-open lock';
     } else {
         lock.classList = 'fas fa-lock lock'; 
     }
@@ -30,3 +32,18 @@ const lockBtn = document.querySelectorAll('.lock');
 lockBtn.forEach(lock => {
     lock.addEventListener('click', (e) => lockColor(e))
 });
+
+const addProjectTitle = () => {
+    const createProjectInput = document.querySelector('.createProjectInput').value;
+    const projects = document.querySelector('.projects');
+    const project = document.createElement("article");
+    project.className = "project";
+    const title = document.createElement("h3");
+    title.innerHTML = createProjectInput;
+    project.prepend(title);
+    projects.prepend(project)
+}
+
+const createProjectBtn = document.querySelector('.createProjectBtn');
+createProjectBtn.addEventListener('click', () => addProjectTitle())
+
