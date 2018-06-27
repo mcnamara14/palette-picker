@@ -2,6 +2,10 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('./knexfile')[environment];
+const database = require('knex')(configuration);
+
 app.locals.projects = [
 	{ id: '1', 
 		name: 'Project 1'
@@ -47,10 +51,15 @@ app.get('/api/v1/projects', (request, response) => {
 //Get all palettes
 
 app.get('/api/v1/palettes', (request, response) => {
-	const { palettes } = app.locals;
-
-	response.json(palettes);
-})
+  database('palettes').select()
+    .then((palette) => {
+      response.status(200).json(palette);
+      console.log(JSON.parse(palette))
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
 
 //Add a project
 
