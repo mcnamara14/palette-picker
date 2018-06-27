@@ -6,7 +6,7 @@ html {
 	background: #222;
 }
 
-main {
+main, .project-container {
 	width: 80%;
 	margin: 0 auto;
 	text-align: center;
@@ -21,12 +21,44 @@ header {
 	padding: 15px;
 }
 
-.add-project {
+.add-palette {
     padding: 20px;
     border-bottom: 1px solid #444;
     display: flex;
     justify-content: center;
-    margin-top: 3px;
+	margin-top: 3px;
+}
+
+.add-project {
+	padding: 20px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin-top: 50px;
+	background: #1a1a1a; /* Old browsers */
+	background: #1a1a1a; /* Old browsers */
+	background: -moz-linear-gradient(top, #1a1a1a 50%, #1a1a1a 50%, #1a1a1a 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1a1a1a 50%,#1a1a1a 50%,#1a1a1a 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1a1a1a 50%,#1a1a1a 50%,#1a1a1a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a1a1a', endColorstr='#1a1a1a',GradientType=0 ); /* IE6-9 */
+	}
+
+.add-project p {
+	color: #888;
+}
+
+.project {
+	width: 24%;
+    text-align: center;
+    color: #ddd;
+    margin-top: 40px;
+}
+
+.projects {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 h1 {
@@ -44,7 +76,20 @@ h2 {
 	margin-top: 40px;
 }
 
-.add-project select {
+.project h3 {
+	font-weight: 500;
+    text-transform: uppercase;
+}
+
+h4 {
+	font-weight: 300;
+}
+
+.project-container h2 {
+	text-align: center;
+}
+
+.add-palette select {
 	background: none;
     border: none;
     color: #777;
@@ -53,7 +98,7 @@ h2 {
     width: 16%;
 }
 
-.add-project input {
+.add-palette input {
 	margin: 0 40px;
 	border: none;
 	font-size: 0.9rem;
@@ -63,15 +108,45 @@ h2 {
     border-radius: 5px;
 }
 
-.add-project button {
+.project-palette {
+	display: flex;
+    align-items: center;
+}
+
+.project-palette-colors {
+	width: 65%;
+    margin-left: 20px;
+    display: flex;
+	justify-content: space-around;
+}
+
+.project-palette-color {
+	width: 19%;
+    border: 1px solid #333;
+    height: 40px;
+}
+
+.add-project input  {
+	margin: 0 40px;
+	height: 35px;
+	border: none;
+	font-size: 0.9rem;
+    background: #333;
+    width: 20%;
+    padding: 0 40px;
+    border-radius: 5px;
+}
+
+.add-palette button, .add-project button {
     padding: 0 20px;
     background: #222;
     border-radius: 5px;
     color: #eee;
-    border: 1px solid #333;
+	border: 1px solid #333;
+	height: 35px;
 }
 
-.add-project button:hover {
+.add-palette button:hover {
 	cursor: pointer;
 	background: #191919;
 }

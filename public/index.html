@@ -14,7 +14,7 @@
 	<header>
 		<h1>Palette Picker</h1>
 	</header>
-	<section class="add-project">
+	<section class="add-palette">
 			<select>
 					<option value="" disabled selected>Select a project</option>
 					<option value="volvo">Volvo</option>
@@ -31,41 +31,73 @@
 				<article class="color-container">
 					<div class="color color-1"></div>
 					<div class="hex-lock-container">
-						<i class="fas fa-unlock-alt lock"></i>
+						<i class="fas fa-lock-open lock"></i>
 						<article class="hex"><p>HEX</p><span class="hex-1"></span></article>
 					</div>
 				</article>
 				<article class="color-container">
 						<div class="color color-2"></div>
 						<div class="hex-lock-container">
-							<i class="fas fa-unlock-alt lock"></i>
+							<i class="fas fa-lock-open lock"></i>
 							<article class="hex"><p>HEX</p><span class="hex-2"></span></article>
 						</div>
 				</article>
 				<article class="color-container">
 						<div class="color color-3"></div>
 						<div class="hex-lock-container">
-							<i class="fas fa-unlock-alt lock"></i>
+							<i class="fas fa-lock-open lock"></i>
 							<article class="hex"><p>HEX</p><span class="hex-3"></span></article>
 						</div>
 				</article>
 				<article class="color-container">
 						<div class="color color-4"></div>
 						<div class="hex-lock-container">
-							<i class="fas fa-unlock-alt lock"></i>
+							<i class="fas fa-lock-open lock"></i>
 							<article class="hex"><p>HEX</p><span class="hex-4"></span></article>
 						</div>
 				</article>
 				<article class="color-container">
 						<div class="color color-5"></div>
 						<div class="hex-lock-container">
-							<i class="fas fa-unlock-alt lock"></i>
+							<i class="fas fa-lock-open lock"></i>
 							<article class="hex"><p>HEX</p><span class="hex-5"></span></article>
 						</div>
 				</article>
 		</section>
 		<button class="generate-btn">Generate new palette</button>
 </main>
+	<section class="add-project">
+			<p>Create a project</p>
+			<input placeholder="Enter a project name" class="createProjectInput"/>
+			<button class="createProjectBtn">Save</button>
+	</section>
+<section class="project-container">
+	<h2>Projects</h2>
+	<section class="projects">
+		<article class="project">
+			<h3>Project 1</h3>
+			<div class="project-palette">
+				<h4>Palette 1</h4>
+				<div class="project-palette-colors">
+					<div class="project-palette-color"></div>
+					<div class="project-palette-color"></div>
+					<div class="project-palette-color"></div>
+					<div class="project-palette-color"></div>
+					<div class="project-palette-color"></div>
+				</div>
+			</div>
+		</article>
+		<article class="project">
+			<h3>Project 2</h3>
+		</article>
+		<article class="project">
+				<h3>Project 3</h3>
+		</article>
+		<article class="project">
+			<h3>Project 4</h3>
+		</article>
+	</section>
+</section>
 <script src="js/scripts.js"></script>
 </body>
 </html>
