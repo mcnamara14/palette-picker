@@ -34,14 +34,42 @@ lockBtn.forEach(lock => {
 });
 
 const addProjectTitle = () => {
-    const createProjectInput = document.querySelector('.createProjectInput').value;
+    const projectName = document.querySelector('.createProjectInput').value;
+ 
+    addProjectToDatabase(projectName);
+}
+
+const addProjectToDatabase = async (name) => {
+    const response = await fetch('/api/v1/projects',
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ name })
+    });
+    const data = await response.json();
+    const projectId = data.id;
+
+    retrieveProjectFromDatabase(projectId);
+}
+
+const retrieveProjectFromDatabase = async (id) => {
+  const response = await fetch(`/api/v1/projects/${id}`);
+  const data = await response.json();
+  const project = data[0];
+  
+  prependProject(project);
+}
+
+const prependProject = (project) => {
     const projects = document.querySelector('.projects');
-    const project = document.createElement("article");
-    project.className = "project";
+    const article = document.createElement("article");
+    article.className = "project";
     const title = document.createElement("h3");
-    title.innerHTML = createProjectInput;
-    project.prepend(title);
-    projects.prepend(project)
+    title.innerHTML = project.name;
+    article.prepend(title);
+    projects.prepend(article);
 }
 
 const createProjectBtn = document.querySelector('.createProjectBtn');

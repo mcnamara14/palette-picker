@@ -59,6 +59,24 @@ app.get('/api/v1/palettes/:id', (request, response) => {
     });
 });
 
+//Get one project
+
+app.get('/api/v1/projects/:id', (request, response) => {
+  database('projects').where('id', request.params.id).select()
+    .then(project => {
+      if (project) {
+        response.status(200).json(project);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find project with id ${request.params.id}`
+        });
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
 //Add a project
 
 app.post('/api/v1/projects', (request, response) => {
