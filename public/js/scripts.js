@@ -97,11 +97,18 @@ const retrieveProjectFromDatabase = async (id) => {
 
 const prependProject = (project) => {
     const projects = document.querySelector('.projects');
-    const article = document.createElement("article");
+    const article = document.createElement('article');
+    const div = document.createElement('div');
     article.className = `project project${project.id}`;
-    const title = document.createElement("h3");
+    article.id = project.id;
+    const title = document.createElement('h3');
+    const button = document.createElement('BUTTON');
+    const buttonText = document.createTextNode('X');
+    button.appendChild(buttonText);
     title.innerHTML = project.name;
-    article.prepend(title);
+    article.prepend(div);
+    div.prepend(title);
+    div.prepend(button);
     projects.prepend(article);
 }
 
@@ -186,8 +193,12 @@ const retrievePaletteFromDatabase = async (paletteId) => {
 
 const displayPalette = (palette) => {
     const projectArticle = document.querySelector(`.project${palette.project_id}`)
+    const button = document.createElement("BUTTON");
+    const buttonText = document.createTextNode("X");
+    button.appendChild(buttonText);
     const paletteArticle = document.createElement('article');
     paletteArticle.className = `palette palette${palette.id}`;
+    paletteArticle.id = palette.id;
     const title = document.createElement('h4');
     title.innerHTML = palette.name;
     const colorContainer = document.createElement('section');
@@ -209,7 +220,8 @@ const displayPalette = (palette) => {
     color5.style.backgroundColor = palette.color5;
     paletteArticle.prepend(title);
     paletteArticle.append(colorContainer);
-    colorContainer.append(color1, color2, color3, color4, color5)
+    colorContainer.append(color1, color2, color3, color4, color5);
+    paletteArticle.append(button);
     projectArticle.append(paletteArticle);
 }
 
@@ -223,3 +235,36 @@ const changePaletteName = () => {
 }
 
 document.querySelector('.palette-name').addEventListener('input', changePaletteName);
+
+const deleteProject = async (e) => {
+
+    const button = e.target;
+    const project = button.closest('.project');
+    const id = project.getAttribute('id')
+
+    const response = await fetch(`/api/v1/projects/${id}`, {method: 'DELETE'});
+    location.reload();
+}
+
+setTimeout(function() { 
+    deleteProjectBtns = document.querySelectorAll('.project button');
+    deleteProjectBtns.forEach(button => {
+        button.addEventListener('click', (e) => deleteProject(e))
+    });
+}, 1000);
+
+const deletePalette = async (e) => {
+    const button = e.target;
+    const palette = button.closest('.palette');
+    const id = palette.getAttribute('id')
+    
+    const response = await fetch(`/api/v1/palettes/${id}`, {method: 'DELETE'});
+    location.reload();
+}
+
+setTimeout(function() { 
+    deletePaletteBtns = document.querySelectorAll('.palette button');
+    deletePaletteBtns.forEach(button => {
+        button.addEventListener('click', (e) => deletePalette(e))
+    });
+}, 1000);
