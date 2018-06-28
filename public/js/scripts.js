@@ -69,6 +69,7 @@ const addProjectTitle = () => {
     const projectName = document.querySelector('.createProjectInput').value;
  
     addProjectToDatabase(projectName);
+    getProjectBtns();
 }
 
 const addProjectToDatabase = async (name) => {
@@ -135,6 +136,7 @@ const addPalette = () => {
     const projectId = getProjectId();
     
     addPaletteTodatabase(paletteName, colors, projectId);
+    getPaletteBtns();
 }
 
 const getColors = () => {
@@ -243,15 +245,18 @@ const deleteProject = async (e) => {
     const id = project.getAttribute('id')
 
     const response = await fetch(`/api/v1/projects/${id}`, {method: 'DELETE'});
-    location.reload();
+    project.remove();
 }
 
-setTimeout(function() { 
-    deleteProjectBtns = document.querySelectorAll('.project button');
-    deleteProjectBtns.forEach(button => {
-        button.addEventListener('click', (e) => deleteProject(e))
-    });
-}, 1000);
+const getProjectBtns = () => {
+    setTimeout(function() { 
+        deleteProjectBtns = document.querySelectorAll('.project button');
+        deleteProjectBtns.forEach(button => {
+            button.addEventListener('click', (e) => deleteProject(e))
+        });
+    }, 500);
+}
+
 
 const deletePalette = async (e) => {
     const button = e.target;
@@ -259,12 +264,17 @@ const deletePalette = async (e) => {
     const id = palette.getAttribute('id')
     
     const response = await fetch(`/api/v1/palettes/${id}`, {method: 'DELETE'});
-    location.reload();
+    palette.remove();
 }
 
-setTimeout(function() { 
-    deletePaletteBtns = document.querySelectorAll('.palette button');
-    deletePaletteBtns.forEach(button => {
-        button.addEventListener('click', (e) => deletePalette(e))
-    });
-}, 1000);
+const getPaletteBtns = () => {
+    setTimeout(function() { 
+        deletePaletteBtns = document.querySelectorAll('.palette button');
+        deletePaletteBtns.forEach(button => {
+            button.addEventListener('click', (e) => deletePalette(e))
+        });
+    }, 500);
+}
+
+getPaletteBtns();
+getProjectBtns();
