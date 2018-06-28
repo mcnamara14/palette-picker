@@ -148,9 +148,10 @@ app.delete('/api/v1/palettes/:id', (request, response) => {
 
 app.delete('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
-
+  console.log(id)
   database('projects').where('id', id).del()
     .then(project => {
+      console.log(project)
       if (project) {
         return response.sendStatus(204);
       } else {
