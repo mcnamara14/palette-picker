@@ -1,3 +1,35 @@
+const retrieveAllData = async () => {
+    const projects = await retrieveAllProjects();
+    const palettes = await retrieveAllPalettes();
+    if (projects.length) {
+        projects.forEach(project => {
+            prependProject(project);
+            addProjectToDropdown(project);
+        })
+    }
+    if (palettes.length) {
+        palettes.forEach(palette => {
+            displayPalette(palette)
+        })
+    }
+}
+
+const retrieveAllProjects = async () => {
+    const response = await fetch('/api/v1/projects/')
+    const projects = await response.json();
+
+    return projects;
+}
+
+const retrieveAllPalettes = async () => {
+    const response = await fetch('/api/v1/palettes/')
+    const palettes = await response.json();
+
+    return palettes;
+}
+
+retrieveAllData();
+
 const changeColors = () => {
     for (var i = 1; i < 6; i++) {
         const color = document.querySelector(`.color-${i}`);
@@ -66,7 +98,7 @@ const retrieveProjectFromDatabase = async (id) => {
 const prependProject = (project) => {
     const projects = document.querySelector('.projects');
     const article = document.createElement("article");
-    article.className = "project";
+    article.className = `project project${project.id}`;
     const title = document.createElement("h3");
     title.innerHTML = project.name;
     article.prepend(title);
@@ -139,10 +171,55 @@ const addPaletteTodatabase = async (name, colors, projectId) => {
         })
       });
     const data = await response.json();
-    console.log(data)
-    
+    const paletteId = data.id;
+
+    retrievePaletteFromDatabase(paletteId);
 }
 
-document.querySelector('.save-palette-btn').addEventListener('click', addPalette)
+const retrievePaletteFromDatabase = async (paletteId) => {
+    const response = await fetch(`/api/v1/palettes/${paletteId}`)
+    const data = await response.json();
+    const palette = data[0];
+    
+    displayPalette(palette);
+}
+
+const displayPalette = (palette) => {
+    const projectArticle = document.querySelector(`.project${palette.project_id}`)
+    const paletteArticle = document.createElement('article');
+    paletteArticle.className = `palette palette${palette.id}`;
+    const title = document.createElement('h4');
+    title.innerHTML = palette.name;
+    const colorContainer = document.createElement('section');
+    colorContainer.className = 'project-palette-colors';
+    const color1 = document.createElement('div');
+    color1.className = 'project-palette-color';
+    color1.style.backgroundColor = palette.color1;
+    const color2 = document.createElement('div');
+    color2.className = 'project-palette-color';
+    color2.style.backgroundColor = palette.color2;
+    const color3 = document.createElement('div');
+    color3.className = 'project-palette-color';
+    color3.style.backgroundColor = palette.color3;
+    const color4 = document.createElement('div');
+    color4.className = 'project-palette-color';
+    color4.style.backgroundColor = palette.color4;
+    const color5 = document.createElement('div');
+    color5.className = 'project-palette-color';
+    color5.style.backgroundColor = palette.color5;
+    paletteArticle.prepend(title);
+    paletteArticle.append(colorContainer);
+    colorContainer.append(color1, color2, color3, color4, color5)
+    projectArticle.append(paletteArticle);
+}
+
+document.querySelector('.save-palette-btn').addEventListener('click', addPalette);
 
 
+const changePaletteName = () => {
+    const paletteName = document.querySelector('.palette-name').value;
+    const paletteHeading = document.querySelector('.palette-heading');
+    paletteHeading.innerHTML = paletteName;
+}
+
+document.querySelector('.palette-name').addEventListener('input', changePaletteName);
