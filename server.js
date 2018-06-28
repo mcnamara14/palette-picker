@@ -6,29 +6,6 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
-app.locals.projects = [
-	{ id: '1', 
-		name: 'Project 1'
-  },
-  { id: '2', 
-  name: 'Project 2'
-}
-];
-
-app.locals.palettes = [
-  { id: '1', 
-    name: 'Palette 1', 
-    project_id: '1', 
-    colors: [
-        '#E37B40',
-        '#46B29D',
-        '#DE5B49',
-        '#324D5C',
-        '#F0CA4D'
-    ]
-  }
-];
-
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Palette Picker';
 
@@ -43,10 +20,14 @@ app.listen(app.get('port'), () => {
 //Get all projects
 
 app.get('/api/v1/projects', (request, response) => {
-	const { projects } = app.locals;
-
-	response.json(projects);
-})
+  database('projects').select()
+    .then((project) => {
+      response.status(200).json(project);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
 
 //Get all palettes
 
@@ -54,9 +35,44 @@ app.get('/api/v1/palettes', (request, response) => {
   database('palettes').select()
     .then((palette) => {
       response.status(200).json(palette);
-      console.log(JSON.parse(palette))
     })
     .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
+//Get one palette
+
+app.get('/api/v1/palettes/:id', (request, response) => {
+  database('palettes').where('id', request.params.id).select()
+    .then(palettes => {
+      if (palettes.length) {
+        response.status(200).json(palettes);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find palette with id ${request.params.id}`
+        });
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+//Get one project
+
+app.get('/api/v1/projects/:id', (request, response) => {
+  database('projects').where('id', request.params.id).select()
+    .then(project => {
+      if (project) {
+        response.status(200).json(project);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find project with id ${request.params.id}`
+        });
+      }
+    })
+    .catch(error => {
       response.status(500).json({ error });
     });
 });
@@ -64,33 +80,84 @@ app.get('/api/v1/palettes', (request, response) => {
 //Add a project
 
 app.post('/api/v1/projects', (request, response) => {
-	const { name } = request.body;
-	const { projects } = app.locals;
-  const id = Date.now().toString();
+  const project = request.body;
 
-	projects.push({ id, name }); 
-})
+  for (let requiredParameter of ['name']) {
+    if (!project[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: "Expected name to be passed into the body" });
+    }
+  }
+
+  database('projects').insert(project, 'id')
+    .then(project => {
+      response.status(201).json({ id: project[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+}); 
 
 //Add a palette to a project
 
 app.post('/api/v1/:project_id/palettes', (request, response) => {
-	const { project_id } = request.params;
-	const { palettes } = app.locals;
-	const id = Date.now().toString();
-	const { name, colors } = request.body;
+  const { project_id } = request.params;
+  const { name, color1, color2, color3, color4, color5 } = request.body;
+  const palette = { name, color1, color2, color3, color4, color5, project_id };
 
-	palettes.push({ id, name, project_id, colors })
+  for (let requiredParameter of ['name', 'color1', 'color2', 'color3', 'color4', 'color5']) {
+    if (!request.body[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: "Expected name & colors to be passed into the body" });
+    }
+  }
+
+  database('palettes').insert(palette, 'id')
+    .then(palette => {
+      response.status(201).json({ id: palette[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error: `No project with an id of ${project_id}.` });
+    });
+}); 
+
+//Delete a palette
+
+app.delete('/api/v1/palettes/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('palettes').where('id', id).del()
+    .then(palette => {
+
+      if (palette) {
+        response.sendStatus(204)
+      } else {
+        response.status(404).json({ 
+          error: `Could not find a palette with id ${request.params.id}`
+        });
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
 });
 
 //Delete a project
 
 app.delete('/api/v1/projects/:id', (request, response) => {
-  let { projects } = app.locals;
   const { id } = request.params;
-  const project = projects.find(project => project.id === id);
 
-  project ? app.locals.projects = projects.filter(project => project.id !== id) : null;
-
-  console.log(projects)
+  database('projects').where('id', id).del()
+    .then(project => {
+      if (project) {
+        return response.sendStatus(204);
+      } else {
+        return response.status(422).json({ error: 'Not Found' });
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    });
 });
-

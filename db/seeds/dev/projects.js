@@ -3,9 +3,11 @@ exports.seed = function(knex, Promise) {
     .then(() => knex('projects').del()) 
     .then(() => {
       return Promise.all([
-        knex('projects').insert({
-          name: 'Project 1'
-        }, 'id')
+        knex('projects').insert(
+          [ {name: 'Project 1'},
+            {name: 'Project 2'}
+          ]
+          , 'id')
         .then(project => {
           return knex('palettes').insert([
             { name: 'Palette 1', 
