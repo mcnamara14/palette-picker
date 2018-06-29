@@ -55,7 +55,7 @@ app.get('/api/v1/palettes/:id', (request, response) => {
       }
     })
     .catch(error => {
-      response.status(500).json({ error });
+      response.status(404).json({ error });
     });
 });
 
@@ -162,3 +162,5 @@ app.delete('/api/v1/projects/:id', (request, response) => {
       return response.status(500).json({ error });
     });
 });
+
+module.exports = app;
