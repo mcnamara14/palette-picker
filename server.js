@@ -64,7 +64,7 @@ app.get('/api/v1/palettes/:id', (request, response) => {
 app.get('/api/v1/projects/:id', (request, response) => {
   database('projects').where('id', request.params.id).select()
     .then(project => {
-      if (project) {
+      if (project.length) {
         response.status(200).json(project);
       } else {
         response.status(404).json({ 
