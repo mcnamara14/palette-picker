@@ -1,13 +1,13 @@
-language: node_js
-node_js: '8'
-services:
-- postgresql
-before_script:
-- psql -c 'create database palette_picker_test;' -U postgres
-notifications:
-  email: false
-deploy:
-  provider: heroku
-  api_key:
-    secure: SsyTawxrgHJSejVUE4BB60HB7AQ+oZvaNsMavnjGCcrbdwwSVBBaEKGmhubCYw9TE2PzdxDQSq6o4uPXCsEqwbUc9d78jqxfVrBMi2y9T1ugYP1v8QYca8xL6famiupuGGERsAQDdx90i4lcmkP+bOyf+0mCxL7ZRxTXFKMVyFSa4NfrjidSU+7AmA27jBKKcoTpbjmuC2l3E4PsxYDDYFjlakigAGUc91ZD1xPfGVsXRmmxHbwvjg3zQh8obKIWROUnV1563fguXHolq+kPDi4DMChcwn1/alM3NIBDQ4NUWo3eu+Ag5R6/OjKAGr8ToUEqDMXTIxtl9k8HTp+44K3amvU7WZJ9Yq0mpRLKSDnuEn/ShBIkoD/uZyKUCkw5CaW/ZLmD/HW5jjwOatfHMeuDkmuh3qWSULXlh6JCnpTHhRwz3L1cMh+PbwyXnPm1GkGarafh8fmuaJDsFPikEmwuG18v3FdX4pSgMNS6VGLPnFGH/eNCC0wroGVEazgAuTgj9kWPan7W0IQHs4KLBB+PPFxMD+LgaEQu+Aqq3Hkmgs2rHmkXhNpZqYGHbGV2tEWrGVcoLXtLhpgaXyTI+e2jARq2Ly2DYKXWF/+KkSDZMcaNcWrYS26DVLI0w+UVDSRFnodMvFlfrcxFdkrlyrfqfqunqs1LlQp6aFZn3Xs=
-  app: tylers-palette-picker
+# language: node_js
+# node_js: '8'
+# services:
+# - postgresql
+# before_script:
+# - psql -c 'create database palette_picker_test;' -U postgres
+# notifications:
+#   email: false
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: SsyTawxrgHJSejVUE4BB60HB7AQ+oZvaNsMavnjGCcrbdwwSVBBaEKGmhubCYw9TE2PzdxDQSq6o4uPXCsEqwbUc9d78jqxfVrBMi2y9T1ugYP1v8QYca8xL6famiupuGGERsAQDdx90i4lcmkP+bOyf+0mCxL7ZRxTXFKMVyFSa4NfrjidSU+7AmA27jBKKcoTpbjmuC2l3E4PsxYDDYFjlakigAGUc91ZD1xPfGVsXRmmxHbwvjg3zQh8obKIWROUnV1563fguXHolq+kPDi4DMChcwn1/alM3NIBDQ4NUWo3eu+Ag5R6/OjKAGr8ToUEqDMXTIxtl9k8HTp+44K3amvU7WZJ9Yq0mpRLKSDnuEn/ShBIkoD/uZyKUCkw5CaW/ZLmD/HW5jjwOatfHMeuDkmuh3qWSULXlh6JCnpTHhRwz3L1cMh+PbwyXnPm1GkGarafh8fmuaJDsFPikEmwuG18v3FdX4pSgMNS6VGLPnFGH/eNCC0wroGVEazgAuTgj9kWPan7W0IQHs4KLBB+PPFxMD+LgaEQu+Aqq3Hkmgs2rHmkXhNpZqYGHbGV2tEWrGVcoLXtLhpgaXyTI+e2jARq2Ly2DYKXWF/+KkSDZMcaNcWrYS26DVLI0w+UVDSRFnodMvFlfrcxFdkrlyrfqfqunqs1LlQp6aFZn3Xs=
+#   app: tylers-palette-picker
