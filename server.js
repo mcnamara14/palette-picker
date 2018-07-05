@@ -6,6 +6,8 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
+// Real cool and fun comment
+
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Palette Picker';
 
