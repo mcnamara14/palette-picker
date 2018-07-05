@@ -3,6 +3,6 @@ node_js: '8'
 services:
   - postgresql
 before_script:
-  - psql -c 'create database palette_picker;' -U postgres
-before_script:
-  - psql -U postgres -c "create extension postgis"
+  - psql -c 'create database palette_picker_test;' -U postgres
+notifications:
+  email: false
